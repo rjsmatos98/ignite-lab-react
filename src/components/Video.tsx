@@ -1,5 +1,5 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
-import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from "phosphor-react";
+import { CaretRight, CircleNotch, DiscordLogo, FileArrowDown, Lightning } from "phosphor-react";
 
 import '@vime/core/themes/default.css'
 import { useGetLessonBySlugQuery } from "../graphql/generated";
@@ -17,8 +17,16 @@ export function Video(props: VideoProps) {
 
     if (!data || !data.lesson) {
         return (
-            <div className="flex-1">
-                <p>Carregando...</p>
+            <div className="flex-1 flex flex-col justify-center items-center max-h-[80vh]">
+                <CircleNotch size={70}>
+                    <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        dur="3s"
+                        to="360 0 0"
+                        repeatCount="indefinite"
+                    />
+                </CircleNotch>
             </div>
         )
     }
@@ -26,7 +34,7 @@ export function Video(props: VideoProps) {
     return (
         <div className="flex-1">
             <div className="bg-black flex justify-center">
-                <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
+                <div className="h-full w-full xl:max-w-[1100px] sm:max-w-full max-h-[60vh] aspect-video">
                     <Player language="pt">
                         <Youtube videoId={data?.lesson.videoId} />
                         <DefaultUi />
@@ -35,7 +43,7 @@ export function Video(props: VideoProps) {
             </div>
 
             <div className="p-8 max-w-[1100px] mx-auto">
-                <div className="flex items-start gap-16">
+                <div className="flex sm:flex-col xl:flex-row sm:gap-8 xl:gap-16">
                     <div className="flex-1">
                         <h1 className="text-2xl font-bold">
                             {data?.lesson.title}
@@ -80,8 +88,8 @@ export function Video(props: VideoProps) {
                     </div>
                 </div>
 
-                <div className="gap-8 mt-28 grid grid-cols-2">
-                    <a href="" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
+                <div className="gap-8 sm:mt-8 xl:mt-16 grid sm:grid-r2 xl:grid-cols-2">
+                    <a href="" target="_blank" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
                         <div className="bg-green-700 h-full p-6 flex items-center">
                             <FileArrowDown size={40} />
                         </div>
@@ -93,11 +101,11 @@ export function Video(props: VideoProps) {
                                 Acesse o material complementar para acelerar o seu desenvolvimento
                             </p>
                         </div>
-                        <div className="h-full p-6 flex items-center">
+                        <div className="h-full lg:p-6 flex m-auto items-center">
                             <CaretRight size={24} />
                         </div>
                     </a>
-                    <a href="" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
+                    <a href="" target="_blank" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
                         <div className="bg-green-700 h-full p-6 flex items-center">
                             <FileArrowDown size={40} />
                         </div>
@@ -109,7 +117,7 @@ export function Video(props: VideoProps) {
                                 Baixe wallpapers exclusivos do Ignite Lab e personalize a sua máquina
                             </p>
                         </div>
-                        <div className="h-full p-6 flex items-center">
+                        <div className="h-full lg:p-6 flex m-auto items-center">
                             <CaretRight size={24} />
                         </div>
                     </a>

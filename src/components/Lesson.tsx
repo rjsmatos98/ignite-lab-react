@@ -3,8 +3,9 @@ import { isPast, format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { Link, useParams } from 'react-router-dom';
 import classNames from 'classnames'
+import { ActionMenu } from "../interfaces/ActionMenu";
 
-interface LessonProps {
+interface LessonProps extends ActionMenu {
     title: string;
     slug: string;
     availableAt: Date;
@@ -22,14 +23,21 @@ export function Lesson(props: LessonProps) {
     const isActiveLesson = slug === props.slug
 
     return (
-        <Link to={`/event/lesson/${props.slug}`} className="group">
+        <Link 
+            to={isLessonAvailable ? `/event/lesson/${props.slug}` : ''} 
+            className={classNames("group", {
+                'cursor-not-allowed' : !isLessonAvailable
+            })}
+            onClick={() => isLessonAvailable && props.setActionMenu(false)}
+        >
             <span className="text-gray-300">
                 {availableDateFormatted[0].toUpperCase() + availableDateFormatted.substring(1)}
             </span>
 
             <div 
                 className={classNames(
-                    'rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500', {
+                    'rounded border border-gray-500 p-4 mt-2 ', {
+                        'group-hover:border-green-500' : !isActiveLesson && isLessonAvailable,
                         'bg-green-500': isActiveLesson,
                 })}
             >
