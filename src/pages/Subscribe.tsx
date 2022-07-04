@@ -1,10 +1,9 @@
 import { useState, FormEvent, useLayoutEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { useCreateSubscriberMutation } from "../graphql/generated";
 import code_mockup from "../assets/code-mockup.png"
 import classNames from "classnames";
-import { Footer } from "../components/Footer";
 
 export function Subscribe() {
     const navigate = useNavigate();
@@ -112,12 +111,6 @@ export function Subscribe() {
                         >
                             Garantir minha vaga
                         </button>
-                        {/*<div className="text-right text-sm font-bold">
-                            <Link to="/event"
-                                className="hover:text-green-300"
-                            >
-                                Já sou inscrito
-                        </Link></div>*/}
                     </form>
                 </div>
             </div>

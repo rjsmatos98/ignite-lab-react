@@ -1,5 +1,5 @@
 import rocketseatLogo from '../assets/rocketseat-logo.png'
-import linkedinLogo from '../assets/linkedin-Logo.png'
+import linkedinLogo from '../assets/linkedin-logo.png'
 import githubLogo from '../assets/github-logo.png'
 
 export function Footer() {
